@@ -1,0 +1,7 @@
+6
+28F:\jirengu\canvas-demo1\dist133047493863794975 1
+34F:\jirengu\canvas-demo1\index.html133047493862915481 0
+34F:\jirengu\canvas-demo1\shtyle.css133047459598278337 0
+47F:\jirengu\canvas-demo1\dist\index.b5cd265c.css133047490235445409 0
+51F:\jirengu\canvas-demo1\dist\index.b5cd265c.css.map133047490235465399 0
+39F:\jirengu\canvas-demo1\dist\index.html133047493863794975 0

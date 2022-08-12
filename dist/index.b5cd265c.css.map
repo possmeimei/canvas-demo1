@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;;;AAGA","sources":["shtyle.css"],"sourcesContent":["*{\r\n    margin: 0; padding: 0; box-sizing: border-box;\r\n}\r\n#canvas{\r\n    height: 100vh;\r\n    border: 1px solid red;\r\n}"],"names":[],"version":3,"file":"index.b5cd265c.css.map","sourceRoot":"/__parcel_source_root/"}
