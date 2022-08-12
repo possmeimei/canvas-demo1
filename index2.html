@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="shtyle.css">
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        let canvas = document.getElementById("canvas");
+        // let documentwidth = document.body.clientWidth
+        // let documentheight = document.body.clientHeight
+        // canvas.width = documentwidth
+        // canvas.height = documentheight
+        // body默认不会占满全屏，需获取文档高度
+        canvas.width = document.documentElement.clientWidth
+        canvas.height = document.documentElement.clientHeight
+        // 画线
+        let ctx = canvas.getContext("2d");
+        let painting = false
+        ctx.fillStyle = 'black';
+        ctx.strokeStyle = 'none'
+
+        // ctx.fillStyle = "rgb(200,0,0)";
+        canvas.onmousedown = () => {
+            painting = true
+        }
+        // ctx.fillRect(50, 20, 200, 50);
+
+        // ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        // ctx.fillRect(30, 30, 55, 50);
+        // 调试屏幕宽度
+        // console.log(document.body.clientWidth)
+
+        canvas.onmousemove = (e) => {
+            // 获取函数
+            // console.log(e.clientX)
+            // console.log(e.clientY)
+            if (painting === true) {
+                // ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);画矩形
+                ctx.beginPath();
+                ctx.arc(e.clientX, e.clientY, 4, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.fill();
+            } else {
+                console.log('什么都不做')
+            }
+            canvas.onmouseup = () => {
+                painting = false
+            }
+        }
+
+    </script>
+</body>
+
+</html>

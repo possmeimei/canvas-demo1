@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="shtyle.css">
 </head>
+
 <body>
     <div id="canvas"></div>
     <script>
-        canvas.onclick = (e)=>{
+        // canvas.onclick = (e)=>{鼠标点击事件
+        // onmousemove是鼠标移动事件
+        canvas.onmousemove = (e) => {
             // console.log调试大法
             console.log(e.clientX)
             console.log(e.clientY)
@@ -30,4 +34,5 @@
         }
     </script>
 </body>
+
 </html>
