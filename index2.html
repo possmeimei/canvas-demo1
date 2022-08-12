@@ -22,38 +22,71 @@
         canvas.height = document.documentElement.clientHeight
         // 画线
         let ctx = canvas.getContext("2d");
-        let painting = false
+        // console.log(document.hasOwnProperty("ontouchstart"))这个不支持手机端
+        // ctx.fillStyle = "rgb(200,0,0)";
         ctx.fillStyle = 'black';
         ctx.strokeStyle = 'none'
+        ctx.lineWidth = 10;
+        ctx.lineCap = "round";
+        let painting = false;
+        // if (canvas.width < 500){
+        //     console.log('手机')
+        // }else{
+        //     console.log('')
+        // }不是办法的办法，大部分情况能用
 
-        // ctx.fillStyle = "rgb(200,0,0)";
-        canvas.onmousedown = () => {
-            painting = true
+        var isTouchDevice = 'ontouchstart' in
+            document.documentElement;
+
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
         }
-        // ctx.fillRect(50, 20, 200, 50);
-
-        // ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-        // ctx.fillRect(30, 30, 55, 50);
-        // 调试屏幕宽度
-        // console.log(document.body.clientWidth)
-
-        canvas.onmousemove = (e) => {
-            // 获取函数
-            // console.log(e.clientX)
-            // console.log(e.clientY)
-            if (painting === true) {
-                // ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);画矩形
-                ctx.beginPath();
-                ctx.arc(e.clientX, e.clientY, 4, 0, 2 * Math.PI);
-                ctx.stroke();
-                ctx.fill();
-            } else {
-                console.log('什么都不做')
+        if (isTouchDevice) {
+            canvas.ontouchmove = (e) => {
+                canvas.ontouchstart = (e) => {
+                    let x = e.touches[0].clientX
+                    let y = e.touches[0].clientY
+                    last = [x, y];
+                }
+                let x = e.touches[0].clientX
+                let y = e.touches[0].clientY
+                // ctx.beginPath();
+                // ctx.arc(x, y, 4, 0, 2 * Math.PI);
+                // ctx.stroke();
+                // ctx.fill();画点
+                drawLine(last[0], last[1], x, y);
+                last = [x, y];
             }
-            canvas.onmouseup = () => {
-                painting = false
+        } else {
+            canvas.onmousedown = (e) => {
+                painting = true
+                last = [e.clientX, e.clientY]
+                console.log(last)
+            }
+
+            canvas.onmousemove = (e) => {
+                if (painting === true) {
+                    // ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);画矩形
+                    // ctx.beginPath();
+                    // ctx.arc(e.clientX, e.clientY, 4, 0, 2 * Math.PI);
+                    // ctx.stroke();
+                    // ctx.fill();画点
+                    drawLine(last[0], last[1], e.clientX, e.clientY);
+                    last = [e.clientX, e.clientY]
+                } else {
+                }
+                canvas.onmouseup = () => {
+                    painting = false
+                }
             }
         }
+
+
+
+
 
     </script>
 </body>
